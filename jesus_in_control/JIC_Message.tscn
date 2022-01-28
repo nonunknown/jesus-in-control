@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/jesus_in_control/JIC_MessageWindow.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_top = 27.0
+shadow_color = Color( 0, 0, 0, 0.705882 )
+shadow_size = 31
+anti_aliasing_size = 0.742
+
+[node name="WindowDialog" type="WindowDialog"]
+visible = true
+anchor_left = 0.327
+anchor_top = 0.382
+anchor_right = 0.673
+anchor_bottom = 0.618
+margin_left = 0.151978
+margin_top = -0.200012
+margin_right = -0.152039
+margin_bottom = 0.199982
+custom_colors/title_color = Color( 1, 1, 1, 1 )
+custom_styles/panel = SubResource( 1 )
+popup_exclusive = true
+window_title = "Message of the day"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 20.0
+margin_right = -30.0
+margin_bottom = -20.0
+focus_mode = 2
+text = "\"Luke 6:45 A good man brings good things out of the good stored up in his heart, and an evil man brings evil things out of the evil stored up in his heart. For the mouth speaks what the heart is full of.\""
+selection_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bt_thanks" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -30.0
+margin_top = -20.0
+margin_right = 30.0
+text = "Thanks!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="bt_thanks" to="." method="_on_bt_thanks_pressed"]
